@@ -1,27 +1,34 @@
-let score = 0;
+let yourScore = 0;
+let aiScore = 0;
 
 function playRound (playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "paper" && computerSelection === 'rock') {
-        score = score + 1;
+        yourScore = yourScore + 1;
+        aiScore = aiScore -1;
         return "You win! Paper wraps rock."
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors") {
-        score = score - 1
+        yourScore = yourScore - 1;
+        aiScore = aiScore + 1;
         return "You lose! Scissors cut paper."
     } 
     
     if (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper") {
-        score = score + 1
+        yourScore = yourScore + 1
+        aiScore = aiScore - 1;
         return "You win! Scissors cut paper."
     }  else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock") {
-        score = score - 1
+        yourScore = yourScore - 1;
+        aiScore = aiScore + 1;
         return "You lose! Rock beats scissors."
     }
     
     if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors") {
-        score = score + 1
+        yourScore = yourScore + 1
+        aiScore = aiScore - 1;
         return "You win! Rock beats scissors."
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection === 'paper') {
-        score = score - 1
+        yourScore = yourScore - 1;
+        aiScore = aiScore + 1;
         return "You lose! Paper wraps rock."
 
     } if (playerSelection.toLowerCase() === computerSelection) {
@@ -30,6 +37,17 @@ function playRound (playerSelection, computerSelection) {
         return "You only have three options..."
     } 
 }
+
+// create a score function. maybe get score and show score?
+
+function getScore () {
+    if (yourScore < 0 || aiScore < 0) {
+        yourScore = 0;
+        aiScore = 0;
+}
+}
+
+
 
 let playerSelection = prompt("Quick! Rock, paper or scissors?")
 
@@ -42,9 +60,10 @@ const computerSelection = getComputerChoice();
 
 let rounds = 5;
 
+// now i need to set a function called game with a for loop that goes from round 1 to 5, and a while loop that keeps the questions going. if my score is bigger than the opponent, I win, and vice-versa. (see bellow for info, have to improve it someway...)
+
 alert(playRound(playerSelection, computerSelection))
 
-alert("Your score is " + score)
 
 
 
