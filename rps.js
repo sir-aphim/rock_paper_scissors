@@ -43,7 +43,9 @@ function playRound (playerSelection, computerSelection) {
 function limitScore () {
     if (yourScore < 0) {
         yourScore = 0;
-}
+    } else if (aiScore < 0) {
+        aiScore = 0;
+    }
 }
 
 function showScore () {
