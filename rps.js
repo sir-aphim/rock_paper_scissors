@@ -47,6 +47,13 @@ function getScore () {
 }
 }
 
+function showScore () {
+    if (yourScore > aiScore) {
+        return "You win!"
+    } else {
+        return "You lose!"
+    }
+}
 
 
 let playerSelection = prompt("Quick! Rock, paper or scissors?")
