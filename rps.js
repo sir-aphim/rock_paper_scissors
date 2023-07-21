@@ -4,7 +4,7 @@ let aiScore = 0;
 function playRound (playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "paper" && computerSelection === 'rock') {
         yourScore = yourScore + 1;
-        aiScore = aiScore -1;
+        aiScore = aiScore - 1;
         return "You win! Paper wraps rock."
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors") {
         yourScore = yourScore - 1;
@@ -40,18 +40,19 @@ function playRound (playerSelection, computerSelection) {
 
 // create a score function. maybe get score and show score?
 
-function getScore () {
-    if (yourScore < 0 || aiScore < 0) {
+function limitScore () {
+    if (yourScore < 0) {
         yourScore = 0;
-        aiScore = 0;
 }
 }
 
 function showScore () {
     if (yourScore > aiScore) {
         return "You win!"
-    } else {
+    } else if (yourScore < aiScore) {
         return "You lose!"
+    } else {
+        return "You're tied. Nice."
     }
 }
 
@@ -71,6 +72,10 @@ let rounds = 5;
 
 alert(playRound(playerSelection, computerSelection))
 
+limitScore()
+alert(yourScore)
+alert(aiScore)
+alert(showScore())
 
 
 
