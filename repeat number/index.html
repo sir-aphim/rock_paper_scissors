@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        input = parseInt(prompt("Enter a number greater than 100.")) 
+
+        // while (input < 100) {
+        //     input = parseInt(prompt("I asked for a number greater than 100."))
+        //     if (input > 100) {
+        //         alert("Nice. Your number is " + input)
+        //     }
+
+        //     if (input.length === 0) {
+        //         break;
+        //     }
+        // }
+
+        do {
+            num = prompt("Enter a number greater than 100?", 0);
+        } while (num <= 100 && num);
+
+
+    </script>
+</body>
+</html>

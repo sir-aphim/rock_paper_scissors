@@ -9,9 +9,9 @@ function limitScore () {
     }
 }
 
-let playerSelection = prompt("Rock, paper, or scissors? Press enter to begin!")
+let playerSelection = prompt("Rock, paper, or scissors? Press enter to begin! (or enter Q to quit).")
 
-function getScore () {
+function returnScore () {
     if (aiScore > yourScore) {
         return "You lost."
     } else if (yourScore > aiScore) {
@@ -21,37 +21,36 @@ function getScore () {
     }
 }
 
+// randomization of options
 function getComputerChoice () {
     let choices = ["rock", "paper", "scissors"]
     return choices[Math.floor(Math.random()*choices.length)] ;
 }
 
 function playRound (playerSelection, computerSelection) {
-
     if (playerSelection.toLowerCase() === "paper" && computerSelection === 'rock') {
-        yourScore = yourScore++;
-        aiScore = aiScore--;
+        yourScore++;
+        aiScore--;
         return 'You win! Paper wraps rock'
     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors") {
-        yourScore = yourScore--;
-        aiScore = aiScore++;
+        yourScore--;
+        aiScore++;
         return 'You lose! Scissors cut paper'
     } 
     if (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper") {
-        yourScore = yourScore--;
-        aiScore = aiScore++;
+        yourScore++;
+        aiScore--;
         return 'You win! Scissors cut paper'
     }  else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock") {
-        yourScore = yourScore--;
-        aiScore = aiScore++;
+        yourScore--;
+        aiScore++;
         return 'You lose! Rock beats scissors'
     }
     
     if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors") {
-        yourScore = yourScore++;
-        aiScore = aiScore--;
+        yourScore++;
+        aiScore--;
         return 'You win! Rock beats scissors'
-
     } else if (playerSelection.toLowerCase() === "rock" && computerSelection === 'paper') {
         yourScore = yourScore--;
         aiScore = aiScore++;
@@ -60,7 +59,8 @@ function playRound (playerSelection, computerSelection) {
     } if (playerSelection.toLowerCase() === computerSelection) {
         return `It's a tie between ${playerSelection.toLowerCase()}s!`
     } else {
-        your
+        yourScore = 0;
+        aiScore = 0;
         return `Hey! You can only use one of the options!`
     }
 }
@@ -75,13 +75,16 @@ function playRound (playerSelection, computerSelection) {
 
 
 function game() {
-    for (let i = 0; i < 5; i++) {
-        limitScore();
-        playerSelection = prompt(`Quick! The score is ${yourScore} to ${aiScore}.`);
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection)); // Removed the colon ":" at the end.
-    }
-    return getScore();
+    while (playerSelection.toLowerCase() !== "q") {
+        for (let i = 0; i < 5; i++) {
+            limitScore();
+            playerSelection = prompt(`Quick! The score is ${yourScore} to ${aiScore}.`);
+            const computerSelection = getComputerChoice();
+            console.log(playRound(playerSelection, computerSelection)); // Removed the colon ":" at the end.
+        } return returnScore();
+} 
+    return "You stopped."
+  
 }
 
 // turns out the fix for the 'undefined' error was just setting the 'else' to the getScore() function....
