@@ -5,7 +5,7 @@
 
 body {
     opacity: 0;
-    /* transition: opacity 4s; */
+    transition: opacity 4s;
     height: 100vh;
     margin: 0;
     font-family: Roboto, sans-serif;
@@ -50,19 +50,35 @@ header > h1 {
     }
 
     #cards > .the-devil {
+        transition: transform .2s;
         transform: rotate(-8deg);
         margin-top: 12px;
         filter: drop-shadow(-20px 10px 25px black)
     }
 
+        #cards > .the-devil:hover { 
+                transform: scale(1.1);
+        }
+
     #cards > .the-star {
+        transition: transform .2s;
         transform: rotate(3deg);
         filter: drop-shadow(20px 16px 25px black)
     }
 
+        #cards > .the-star:hover {
+            transform: scale(1.1) rotate(-2deg);
+        }
+
     #cards > .death {
+        transition: transform .2s;
         filter: drop-shadow(0px 16px 25px black)
     }
+
+        #cards > .death:hover {
+            transform: scale(1.1);
+        }
+
 
 header > p {
     margin: 0 auto;
@@ -79,4 +95,12 @@ button.btn.btn-outline-light {
 .logo{
     filter: invert(1%) sepia(1%) saturate(1%) hue-rotate(1deg) brightness(1000%) contrast(80%);
     height: 131px;
+}
+
+/*  animation */
+
+.fadeOut {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
 }
