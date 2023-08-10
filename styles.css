@@ -51,7 +51,7 @@ header > h1 {
 
     #cards > .the-devil {
         transition: transform .2s;
-        transform: rotate(-8deg);
+        transform: rotate(-6deg);
         margin-top: 12px;
         filter: drop-shadow(-20px 10px 25px black)
     }
