@@ -5,7 +5,7 @@
 
 body {
     opacity: 0;
-    transition: opacity 4s;
+    /* transition: opacity 4s; */
     height: 100vh;
     margin: 0;
     font-family: Roboto, sans-serif;
@@ -28,13 +28,13 @@ body {
 }
 
 header {
+    color: #e5e5e5;
     margin: 0 auto;
     text-align: center;
 }
 
 header > h1 {
     font-family: 'Modesto', sans-serif;
-    color: #e5e5e5;
     margin-top: 0;
     font-size: 62px;
     letter-spacing: .3rem;
@@ -64,8 +64,14 @@ header > h1 {
         filter: drop-shadow(0px 16px 25px black)
     }
 
+header > p {
+    margin: 0 auto;
+    width: 730px;
+}
+
 button.btn.btn-outline-light {
-    margin-bottom: 40px;
+    margin-top: 5px;
+    margin-bottom: 30px;
     font-family: 'Modesto';
     letter-spacing: .1rem;
 }
