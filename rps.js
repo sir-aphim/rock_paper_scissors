@@ -93,17 +93,24 @@
 
 const button = document.querySelector('button');
 const body = document.querySelector('body')
-const card = document.querySelector('#cards')
+const cards = document.querySelectorAll('.item')
 const para = document.querySelector('p')
 
 button.addEventListener("click", () => {
     const audio = document.querySelector('audio')
     audio.play()
-    para.textContent = "Game started. Choose your idol."
-    document.body.style.backgroundColor = '#7e7878';
+    para.classList.add('bgFade')
+    document.body.style.backgroundColor = 'black';
+    body.classList.add('bgFade');
     button.classList.add("fadeOut")
+    para.textContent = 'Game started. Choose your idol.'
+
+    // for each card, add the active class
+    cards.forEach((card) => {
+        card.classList.add('active')
+    })
 })
 
 
-// find a way to keep the cards unhoverable before starting the game
+
 // add background once hovered
