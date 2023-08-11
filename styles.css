@@ -49,33 +49,35 @@ header > h1 {
         height: 500px;
     }
 
-    #cards > .the-devil {
+    #cards > #the-devil {
         transition: transform .2s;
         transform: rotate(-6deg);
-        margin-top: 12px;
+        margin-top: 9px;
         filter: drop-shadow(-20px 10px 25px black)
     }
 
-        #cards > .the-devil:hover { 
+        /* the active class after devil turns it selectable inside the DOM */
+        #cards > #the-devil.active:hover { 
                 transform: scale(1.1);
-        }
+        } 
 
-    #cards > .the-star {
+    #cards > #the-star {
         transition: transform .2s;
         transform: rotate(3deg);
         filter: drop-shadow(20px 16px 25px black)
     }
 
-        #cards > .the-star:hover {
+        #cards > #the-star.active:hover {
             transform: scale(1.1) rotate(-2deg);
         }
 
-    #cards > .death {
+    #cards > #death {
         transition: transform .2s;
+        margin-top: -4px;
         filter: drop-shadow(0px 16px 25px black)
     }
 
-        #cards > .death:hover {
+        #cards > #death.active:hover {
             transform: scale(1.1);
         }
 
@@ -102,5 +104,11 @@ button.btn.btn-outline-light {
 .fadeOut {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 2s, opacity 2s linear;
+    transition: visibility 0s 3s, opacity 3s linear;
+}
+
+.bgFade {
+    -webkit-transition: background-color 3000ms linear;
+    -ms-transition: background-color 3000ms linear;
+    transition: background-color 3000ms linear;
 }
