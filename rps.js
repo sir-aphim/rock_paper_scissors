@@ -1,5 +1,5 @@
-// let yourScore = 0;
-// let aiScore = 0;
+let yourScore = 0;
+let aiScore = 0;
 
 // function limitScore () {
 //     if (yourScore < 0) {
@@ -93,17 +93,35 @@
 
 const button = document.querySelector('button');
 const body = document.querySelector('body')
+const main = document.querySelector('.vignette')
 const cards = document.querySelectorAll('.item')
 const para = document.querySelector('p')
+
+const devilCard = document.querySelector("#the-devil")
+
+// fade function
+
 
 button.addEventListener("click", () => {
     const audio = document.querySelector('audio')
     audio.play()
+    audio.loop = true;
+
     para.classList.add('bgFade')
     document.body.style.backgroundColor = 'black';
     body.classList.add('bgFade');
     button.classList.add("fadeOut")
-    para.textContent = 'Game started. Choose your idol.'
+    para.textContent = 'Game started. Choose your idol; hover over cards for specifics.'
+
+    // add button
+    const quitButton = document.createElement('button')
+    quitButton.textContent = 'Quit Game'
+    quitButton.classList.add('btn', 'btn-outline-light')
+    quitButton.setAttribute('id', 'quit')
+
+    main.appendChild(quitButton)
+
+    quitButton.onclick = () => window.location.reload()
 
     // for each card, add the active class
     cards.forEach((card) => {
