@@ -19,6 +19,7 @@ body {
 }
 
 .vignette {
+    text-align: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -87,7 +88,7 @@ header > p {
     width: 730px;
 }
 
-button.btn.btn-outline-light {
+.btn.btn-outline-light {
     margin-top: 5px;
     margin-bottom: 30px;
     font-family: 'Modesto';
