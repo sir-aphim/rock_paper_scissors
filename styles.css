@@ -18,6 +18,10 @@ body {
     background-color: #910c10;
 }
 
+button#quit {
+    margin-top: 30px;
+}
+
 .vignette {
     text-align: center;
     position: fixed;
