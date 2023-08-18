@@ -55,35 +55,44 @@ header > h1 {
     }
 
     #cards > #the-devil {
-        transition: transform .2s;
+        will-change: filter;
+
+        transition: transform .2s, filter .2s ease-out;;
         transform: rotate(-6deg);
         margin-top: 9px;
         filter: drop-shadow(-20px 10px 25px black)
     }
 
         /* the active class after devil turns it selectable inside the DOM */
-        #cards > #the-devil.active:hover { 
-                transform: scale(1.1);
+        #cards > #the-devil.active:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0.3rem 0.3rem 2rem rgba(212, 0, 0, 0.8))
         } 
 
     #cards > #the-star {
-        transition: transform .2s;
+        will-change: filter;
+
+        transition: transform .2s, filter .2s ease-out;;
         transform: rotate(3deg);
         filter: drop-shadow(20px 16px 25px black)
     }
 
         #cards > #the-star.active:hover {
             transform: scale(1.1) rotate(-2deg);
+            filter: drop-shadow(0.3rem 0.3rem 2rem rgb(255, 206, 72));
         }
 
     #cards > #death {
-        transition: transform .2s;
+        will-change: filter;
+
+        transition: transform .2s, filter .2s ease-out;
         margin-top: -4px;
         filter: drop-shadow(0px 16px 25px black)
     }
 
         #cards > #death.active:hover {
             transform: scale(1.1);
+            filter: drop-shadow(0.3rem 0.3rem 2rem rgb(255, 255, 255));
         }
 
 
