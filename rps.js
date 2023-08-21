@@ -1,95 +1,74 @@
 let yourScore = 0;
 let aiScore = 0;
 
-// function limitScore () {
-//     if (yourScore < 0) {
-//         yourScore = 0;
-//     } else if (aiScore < 0) {
-//         aiScore = 0;
-//     }
-// }
+// randomization of options
+function getComputerChoice () {
+    let choices = ["rock", "paper", "scissors"]
+    return choices[Math.floor(Math.random()*choices.length)] ;
+}
 
-// let playerSelection = prompt("Rock, paper, or scissors? Press enter to begin! (or enter Q to quit).")
+function playRound (playerSelection, computerSelection) {
 
-// function returnScore () {
-//     if (aiScore > yourScore) {
-//         return "You lost."
-//     } else if (yourScore > aiScore) {
-//         return "You won!"
-//     } else {
-//         return "It's a tie!"
-//     }
-// }
+    if (playerSelection === "paper" && computerSelection === 'rock') {
+        yourScore++;
 
-// // randomization of options
-// function getComputerChoice () {
-//     let choices = ["rock", "paper", "scissors"]
-//     return choices[Math.floor(Math.random()*choices.length)] ;
-// }
+        if (aiScore > 0) {
+            aiScore--;
+        }
+        return "Triumph! The Star's brilliance enshrouds Death's dominion."
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
+        aiScore++;
 
-// function playRound (playerSelection, computerSelection) {
-//     if (playerSelection.toLowerCase() === "paper" && computerSelection === 'rock') {
-//         yourScore++;
-//         aiScore--;
-//         return 'You win! Paper wraps rock'
-//     } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors") {
-//         yourScore--;
-//         aiScore++;
-//         return 'You lose! Scissors cut paper'
-//     } 
-//     if (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper") {
-//         yourScore++;
-//         aiScore--;
-//         return 'You win! Scissors cut paper'
-//     }  else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock") {
-//         yourScore--;
-//         aiScore++;
-//         return 'You lose! Rock beats scissors'
-//     }
+        if (yourScore > 0) {
+            yourScore--;
+        }
+        return "Defeat! The Devil's cunning trumps the brilliance of The Star."
+    } 
+    if (playerSelection === "scissors" && computerSelection === "paper") {
+        yourScore++;
+
+        if (aiScore > 0) {
+            aiScore--;
+        }
+        return 'Triumph! Deceit slices through the brilliance of The Star.'
+    }  else if (playerSelection === "scissors" && computerSelection === "rock") {
+        aiScore++;
+
+        if (yourScore > 0) {
+            yourScore--;
+        }
+        return "Defeat! Death prevails, overshadowing the Devil's deceitful tricks."
+    }
     
-//     if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors") {
-//         yourScore++;
-//         aiScore--;
-//         return 'You win! Rock beats scissors'
-//     } else if (playerSelection.toLowerCase() === "rock" && computerSelection === 'paper') {
-//         yourScore = yourScore--;
-//         aiScore = aiScore++;
-//         return 'You lose! Paper wraps rock'
+    if (playerSelection === "rock" && computerSelection === "scissors") {
+        yourScore++;
 
-//     } if (playerSelection.toLowerCase() === computerSelection) {
-//         return `It's a tie between ${playerSelection.toLowerCase()}s!`
-//     } else {
-//         yourScore = 0;
-//         aiScore = 0;
-//         return `Hey! You can only use one of the options!`
-//     }
-// }
+        if (aiScore > 0) {
+            aiScore--;
+        }
+        return "Triumph! Death's dominion shatters the Devil's schemes."
+    } else if (playerSelection === "rock" && computerSelection === 'paper') {
+        aiScore = aiScore++;
 
+        if (yourScore > 0) {
+            yourScore--;
+        }
+        return "Defeat! The might of Death is dimmed by The Star's radiance."
 
+    } if (playerSelection === computerSelection) {
+        return 'Stalemate! Cosmic forces remain in equilibrium.'
+    }
+}
 
-// // create a score function. maybe get score and show score?
-
-
-
-// // now i need to set a function called game with a for loop that goes from round 1 to 5, and a while loop that keeps the questions going. if my score is bigger than the opponent, I win, and vice-versa. (see bellow for info, have to improve it someway...)
-
-
-// function game() {
-//     while (playerSelection.toLowerCase() !== "q") {
-//         for (let i = 0; i < 5; i++) {
-//             limitScore();
-//             playerSelection = prompt(`Quick! The score is ${yourScore} to ${aiScore}.`);
-//             const computerSelection = getComputerChoice();
-//             console.log(playRound(playerSelection, computerSelection)); // Removed the colon ":" at the end.
-//         } return returnScore();
-// } 
-//     return "You stopped."
+// 2.0
+function game() {
+            const computerSelection = getComputerChoice();
+            return (playRound(playerSelection, computerSelection));
+             // Removed the colon ":" at the end.
+        }
   
-// }
 
 // // turns out the fix for the 'undefined' error was just setting the 'else' to the getScore() function....
-
-// alert(game())
 
 const button = document.querySelector('button');
 const body = document.querySelector('body')
@@ -97,11 +76,12 @@ const main = document.querySelector('.vignette')
 const cards = document.querySelectorAll('.item')
 const para = document.querySelector('p')
 
+// cards selectors
 const devilCard = document.querySelector("#the-devil")
+const starCard = document.querySelector("#the-star")
+const deathCard = document.querySelector("#death")
 
-// fade function
-
-
+// start button event listener
 button.addEventListener("click", () => {
     const audio = document.querySelector('audio')
     audio.play()
@@ -111,7 +91,7 @@ button.addEventListener("click", () => {
     document.body.style.backgroundColor = 'black';
     body.classList.add('bgFade');
     button.classList.add("fadeOut")
-    para.textContent = 'Game started. Choose your idol; hover over cards for specifics.'
+    para.textContent = 'Game started. Choose your idol; hover over cards for specifics. Equilibrium is reached at a level of five.'
 
     // add button
     const quitButton = document.createElement('button')
@@ -127,8 +107,43 @@ button.addEventListener("click", () => {
     cards.forEach((card) => {
         card.classList.add('active')
     })
-})
+
+    // devil card
+    devilCard.addEventListener("click", () => {
+        playerSelection = 'scissors';
+        para.textContent = game();
+
+        const score = document.createElement('p');
+        score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
+        para.appendChild(score);
+    })
+
+    // star card
+    starCard.addEventListener("click", () => {
+        playerSelection = 'paper'
+        para.textContent = game();
+
+        const score = document.createElement('p');
+        score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
+        para.appendChild(score);
+    })
+
+    // death card
+    deathCard.addEventListener('click', () => {
+        playerSelection = 'rock'
+        para.textContent = game();
+
+        const score = document.createElement('p');
+        score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
+        para.appendChild(score);
+    })
+
+    
+}, {once: true});
+
+// fix start button; if clicked multiple times, the quit button will multiply
 
 
+// let's add functionally, for now. find a way to relate each card, to each meaning;
 
 // add background once hovered
