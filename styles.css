@@ -19,7 +19,7 @@ body {
 }
 
 button#quit {
-    margin-top: 30px;
+    margin: 0 auto;
 }
 
 .vignette {
@@ -48,6 +48,7 @@ header > h1 {
 #cards {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
     #cards > img {
@@ -57,7 +58,7 @@ header > h1 {
     #cards > #the-devil {
         will-change: filter;
 
-        transition: transform .2s, filter .4s ease-out;;
+        transition: transform .2s, filter .4s ease-out;
         transform: rotate(-6deg);
         margin-top: 9px;
         filter: drop-shadow(-20px 10px 25px black)
@@ -99,6 +100,12 @@ header > h1 {
 p {
     margin: 0 auto;
     width: 730px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 730px;
+    height: 72px;
+    flex-direction: column;
 }
 
 .btn.btn-outline-light {
@@ -119,6 +126,12 @@ p {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 3s, opacity 3s linear;
+}
+
+.fadeIn {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s 0s, opacity 3s linear; /* Start transition immediately */
 }
 
 .bgFade {
