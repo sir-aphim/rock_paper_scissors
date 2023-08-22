@@ -67,13 +67,12 @@ button.addEventListener("click", () => {
     document.body.style.backgroundColor = 'black';
     body.classList.add('bgFade');
 
-    button.classList.add("fadeOut")
+    button.classList.add("fade-out")
 
     para.textContent = 'Game started. Choose your idol; hover over cards for specifics. Equilibrium is reached at a level of five.'
 
     // add button
     const quitButton = document.createElement('button')
-    quitButton.classList.add('fadeIn')
     quitButton.textContent = 'Quit Game'
     quitButton.classList.add('btn', 'btn-outline-light')
     quitButton.setAttribute('id', 'quit')
@@ -99,9 +98,17 @@ button.addEventListener("click", () => {
         if (yourScore === 5) {
             main.style.display = "none";
             document.body.style.backgroundColor = "#910c10";
+            
+            const victory = document.createElement('p')
+            victory.innerHTML = "You have won! Balance restored."
+            main.appendChild(victory)
         } else if (aiScore === 5) {
             main.style.display = "none";
             document.body.style.backgroundColor = "grey";
+
+            const defeat = document.createElement('p')
+            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
+            main.appendChild(defeat)
         }
     })
 
