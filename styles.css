@@ -18,8 +18,9 @@ body {
     background-color: #910c10;
 }
 
-button#quit {
+#quit {
     margin: 0 auto;
+    animation: fade-in 3s forwards;
 }
 
 .vignette {
@@ -120,18 +121,22 @@ p {
     height: 131px;
 }
 
-/*  animation */
+/*  animations */
 
-.fadeOut {
+/* fade-out uses regular, 'non-keyframes' syntax for it is easier to trigger */
+.fade-out {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s 3s, opacity 3s linear;
-}
+} 
 
-.fadeIn {
-    visibility: visible;
-    opacity: 1;
-    transition: visibility 0s 0s, opacity 3s linear; /* Start transition immediately */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .bgFade {
