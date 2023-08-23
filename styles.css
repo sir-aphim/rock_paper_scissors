@@ -109,6 +109,10 @@ p {
     flex-direction: column;
 }
 
+.fade-class {
+    animation: fade-in 0.5s;
+}
+
 .btn.btn-outline-light {
     margin-top: 5px;
     margin-bottom: 30px;
