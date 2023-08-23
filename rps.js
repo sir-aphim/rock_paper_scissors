@@ -41,9 +41,6 @@ function game() {
             return (playRound(playerSelection, computerSelection));
              // Removed the colon ":" at the end.
         }
-  
-
-// // turns out the fix for the 'undefined' error was just setting the 'else' to the getScore() function....
 
 const button = document.querySelector('button');
 const body = document.querySelector('body')
@@ -56,6 +53,15 @@ const devilCard = document.querySelector("#the-devil")
 const starCard = document.querySelector("#the-star")
 const deathCard = document.querySelector("#death")
 
+// function for text transition
+function show () {
+    if (para.className) {
+    para.className = ''; // checks if name is empty
+    }
+    para.focus(); // use focus trick without setTimeOut
+    para.className = 'fade-class';
+}
+
 
 // start button event listener
 button.addEventListener("click", () => {
@@ -63,13 +69,12 @@ button.addEventListener("click", () => {
     audio.play()
     audio.loop = true;
 
-    para.classList.add('bgFade')
     document.body.style.backgroundColor = 'black';
     body.classList.add('bgFade');
 
     button.classList.add("fade-out")
 
-    para.textContent = 'Game started. Choose your idol; hover over cards for specifics. Equilibrium is reached at a level of five.'
+    para.textContent = 'The cosmic contest begins. Select your entity, then hover over cards for insights. Balance emerges as the quintessential mark, at a level of five.'
 
     // add button
     const quitButton = document.createElement('button')
@@ -78,6 +83,10 @@ button.addEventListener("click", () => {
     quitButton.setAttribute('id', 'quit')
 
     main.appendChild(quitButton)
+
+    // function
+
+    para.classList.toggle('fade-class')
 
     quitButton.onclick = () => window.location.reload()
 
@@ -89,27 +98,31 @@ button.addEventListener("click", () => {
     // devil card
     devilCard.addEventListener("click", () => {
         playerSelection = 'scissors';
-        para.textContent = game();
+        para.innerHTML = game();
 
         const score = document.createElement('p');
         score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
         para.appendChild(score);
 
-        if (yourScore === 5) {
-            main.style.display = "none";
-            document.body.style.backgroundColor = "#910c10";
-            
-            const victory = document.createElement('p')
-            victory.innerHTML = "You have won! Balance restored."
-            main.appendChild(victory)
-        } else if (aiScore === 5) {
-            main.style.display = "none";
-            document.body.style.backgroundColor = "grey";
 
-            const defeat = document.createElement('p')
-            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
-            main.appendChild(defeat)
-        }
+        show();
+
+        // if (yourScore === 5) {
+        //     main.style.display = "none";
+        //     document.body.style.backgroundColor = "#910c10";
+            
+        //     const victory = document.createElement('p')
+        //     victory.innerHTML = "You have won! Balance restored."
+        //     main.appendChild(victory)
+        // } else if (aiScore === 5) {
+        //     main.style.display = "none";
+        //     document.body.style.backgroundColor = "grey";
+
+            // element not working because it is inside the display none zone
+        //     const defeat = document.createElement('p')
+        //     defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
+        //     main.appendChild(defeat)
+        // }
     })
 
     // star card
@@ -121,13 +134,16 @@ button.addEventListener("click", () => {
         score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
         para.appendChild(score);
 
-        if (yourScore === 5) {
-            main.style.display = "none";
-            document.body.style.backgroundColor = "#910c10";
-        } else if (aiScore === 5) {
-            main.style.display = "none";
-            document.body.style.backgroundColor = "grey";
-        }
+        show();
+
+
+        // if (yourScore === 5) {
+        //     main.style.display = "none";
+        //     document.body.style.backgroundColor = "#910c10";
+        // } else if (aiScore === 5) {
+        //     main.style.display = "none";
+        //     document.body.style.backgroundColor = "grey";
+        // }
     })
 
     // death card
@@ -139,13 +155,15 @@ button.addEventListener("click", () => {
         score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
         para.appendChild(score);
 
-        if (yourScore === 5) {
-            main.style.display = "none";
-            document.body.style.backgroundColor = "#910c10";
-        } else if (aiScore === 5) {
-            main.style.display = "none";
-            document.body.style.backgroundColor = "grey";
-        }
+        show();
+
+        // if (yourScore === 5) {
+        //     main.style.display = "none";
+        //     document.body.style.backgroundColor = "#910c10";
+        // } else if (aiScore === 5) {
+        //     main.style.display = "none";
+        //     document.body.style.backgroundColor = "grey";
+        // }
     })
 
     
