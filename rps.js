@@ -47,6 +47,7 @@ const body = document.querySelector('body')
 const main = document.querySelector('.content')
 const cards = document.querySelectorAll('.item')
 const para = document.querySelector('p')
+const message = document.querySelector('#message')
 
 // cards selectors
 const devilCard = document.querySelector("#the-devil")
@@ -86,7 +87,7 @@ button.addEventListener("click", () => {
 
     // function
 
-    para.classList.toggle('fade-class')
+    para.classList.toggle('fade-class') // check if this is relevant
 
     quitButton.onclick = () => window.location.reload()
 
@@ -107,22 +108,39 @@ button.addEventListener("click", () => {
 
         show();
 
-        // if (yourScore === 5) {
-        //     main.style.display = "none";
-        //     document.body.style.backgroundColor = "#910c10";
+        if (yourScore === 5) {
+            main.style.display = "none";
+            document.body.style.backgroundColor = "#910c10";
             
-        //     const victory = document.createElement('p')
-        //     victory.innerHTML = "You have won! Balance restored."
-        //     main.appendChild(victory)
-        // } else if (aiScore === 5) {
-        //     main.style.display = "none";
-        //     document.body.style.backgroundColor = "grey";
+            const victory = document.createElement('h1')
+            
+            victory.innerHTML = "You have won! Balance restored."
+            message.classList.add('msg-transition')
+            message.classList.add('fade-class')
+            message.appendChild(victory)
+
+            const restartButton = document.createElement('button')
+
+            restartButton.textContent = 'Return to Menu Screen'
+
+            restartButton.classList.add('btn', 'btn-outline-light')
+            restartButton.setAttribute('id', 'restart')
+
+            message.appendChild(restartButton)
+
+            restartButton.onclick = () => window.location.reload()
+
+
+        } else if (aiScore === 5) {
+            main.style.display = "none";
+            document.body.style.backgroundColor = "grey";
 
             // element not working because it is inside the display none zone
-        //     const defeat = document.createElement('p')
-        //     defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
-        //     main.appendChild(defeat)
-        // }
+            const defeat = document.createElement('h1')
+
+            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
+            message.appendChild(defeat)
+        }
     })
 
     // star card
@@ -134,16 +152,23 @@ button.addEventListener("click", () => {
         score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
         para.appendChild(score);
 
-        show();
 
+        if (yourScore === 5) {
+            main.style.display = "none";
+            document.body.style.backgroundColor = "#910c10";
+            
+            const victory = document.createElement('h1')
+            victory.innerHTML = "You have won! Balance restored."
+            message.appendChild(victory)
+        } else if (aiScore === 5) {
+            main.style.display = "none";
+            document.body.style.backgroundColor = "grey";
 
-        // if (yourScore === 5) {
-        //     main.style.display = "none";
-        //     document.body.style.backgroundColor = "#910c10";
-        // } else if (aiScore === 5) {
-        //     main.style.display = "none";
-        //     document.body.style.backgroundColor = "grey";
-        // }
+            // element not working because it is inside the display none zone
+            const defeat = document.createElement('h1')
+            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
+            message.appendChild(defeat)
+        }
     })
 
     // death card
@@ -155,15 +180,23 @@ button.addEventListener("click", () => {
         score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
         para.appendChild(score);
 
-        show();
 
-        // if (yourScore === 5) {
-        //     main.style.display = "none";
-        //     document.body.style.backgroundColor = "#910c10";
-        // } else if (aiScore === 5) {
-        //     main.style.display = "none";
-        //     document.body.style.backgroundColor = "grey";
-        // }
+        if (yourScore === 5) {
+            main.style.display = "none";
+            document.body.style.backgroundColor = "#910c10";
+            
+            const victory = document.createElement('h1')
+            victory.innerHTML = "You have won! Balance restored."
+            message.appendChild(victory)
+        } else if (aiScore === 5) {
+            main.style.display = "none";
+            document.body.style.backgroundColor = "grey";
+
+            // element not working because it is inside the display none zone
+            const defeat = document.createElement('h1')
+            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
+            message.appendChild(defeat)
+        }
     })
 
     
