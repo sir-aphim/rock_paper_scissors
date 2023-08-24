@@ -18,6 +18,13 @@ body {
     background-color: #910c10;
 }
 
+#message {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
 #quit {
     margin: 0 auto;
     animation: fade-in 3s forwards;
@@ -39,11 +46,12 @@ header {
     text-align: center;
 }
 
-header > h1 {
+h1 {
     font-family: 'Modesto', sans-serif;
     margin-top: 0;
     font-size: 62px;
     letter-spacing: .3rem;
+    color: #e5e5e5;
 }
 
 #cards {
