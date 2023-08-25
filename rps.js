@@ -11,25 +11,26 @@ function playRound (playerSelection, computerSelection) {
 
     if (playerSelection === "paper" && computerSelection === 'rock') {
         yourScore++;
-        return "Triumph! The Star's brilliance enshrouds Death's dominion."
+        return "Triumph! Death's dominion overshadows the brilliance of The Star."
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
         aiScore++;
-        return "Defeat! The Devil's cunning trumps the brilliance of The Star."
+        return "Defeat! Even the dominion of Death is tricked by the Devil's cunning."
     } 
+
     if (playerSelection === "scissors" && computerSelection === "paper") {
         yourScore++;
-        return 'Triumph! Deceit slices through the brilliance of The Star.'
+        return "Triumph! The Devil's shrewdness conquers, outwitting even the might of Death."
     }  else if (playerSelection === "scissors" && computerSelection === "rock") {
         aiScore++;
-        return "Defeat! Death prevails, overshadowing the Devil's deceitful tricks."
+        return "Defeat! The Devil is overwhelmed by the Star's light."
     }
     
     if (playerSelection === "rock" && computerSelection === "scissors") {
         yourScore++;
-        return "Triumph! Death's dominion shatters the Devil's schemes."
+        return "Triumph! The brilliance of The Star shatters the Devil's schemes."
     } else if (playerSelection === "rock" && computerSelection === 'paper') {
         aiScore++;
-        return "Defeat! The might of Death is dimmed by The Star's radiance."
+        return "Defeat! The Star is dimmed by the inevitable fatality of Death."
     } if (playerSelection === computerSelection) {
         return 'Stalemate! Cosmic forces remain in equilibrium.'
     }
@@ -66,9 +67,8 @@ function show () {
 
 // start button event listener
 button.addEventListener("click", () => {
-    const audio = document.querySelector('audio')
-    audio.play()
-    audio.loop = true;
+    let battleTheme = document.querySelector('.battle')
+    battleTheme.play()
 
     document.body.style.backgroundColor = 'black';
     body.classList.add('bgFade');
@@ -118,6 +118,10 @@ button.addEventListener("click", () => {
 
 
         if (yourScore === 5) {
+            battleTheme.pause()
+            const victoryTheme = document.querySelector('.victory')
+            victoryTheme.play()
+
             main.style.display = "none";
             document.body.style.backgroundColor = "#910c10";
             
@@ -147,7 +151,7 @@ button.addEventListener("click", () => {
 
     // star card
     starCard.addEventListener("click", () => {
-        playerSelection = 'paper'
+        playerSelection = 'rock'
         para.textContent = game();
         
         show()
@@ -187,7 +191,7 @@ button.addEventListener("click", () => {
 
     // death card
     deathCard.addEventListener('click', () => {
-        playerSelection = 'rock'
+        playerSelection = 'paper'
         para.textContent = game();
 
         show()
