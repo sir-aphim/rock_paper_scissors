@@ -77,7 +77,7 @@ button.addEventListener("click", () => {
 
     para.textContent = 'The cosmic contest begins. Select your entity, then hover over cards for insights. Balance emerges as the quintessential mark, at a level of five.'
 
-    // add button
+    // quit button
     const quitButton = document.createElement('button')
     quitButton.textContent = 'Quit Game'
     quitButton.classList.add('btn', 'btn-outline-light')
@@ -85,9 +85,18 @@ button.addEventListener("click", () => {
 
     main.appendChild(quitButton)
 
+    // restart button
+    const restartButton = document.createElement('button')
+    restartButton.textContent = 'Return to Menu Screen'
+
+    restartButton.classList.add('btn', 'btn-outline-light')
+    restartButton.setAttribute('id', 'restart')
+    restartButton.onclick = () => window.location.reload()
+
+
     // function
 
-    para.classList.toggle('fade-class') // check if this is relevant
+    show()
 
     quitButton.onclick = () => window.location.reload()
 
@@ -101,12 +110,12 @@ button.addEventListener("click", () => {
         playerSelection = 'scissors';
         para.innerHTML = game();
 
+        show()
+
         const score = document.createElement('p');
         score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
         para.appendChild(score);
 
-
-        show();
 
         if (yourScore === 5) {
             main.style.display = "none";
@@ -119,18 +128,7 @@ button.addEventListener("click", () => {
             message.classList.add('fade-class')
             message.appendChild(victory)
 
-            const restartButton = document.createElement('button')
-
-            restartButton.textContent = 'Return to Menu Screen'
-
-            restartButton.classList.add('btn', 'btn-outline-light')
-            restartButton.setAttribute('id', 'restart')
-
             message.appendChild(restartButton)
-
-            restartButton.onclick = () => window.location.reload()
-
-
         } else if (aiScore === 5) {
             main.style.display = "none";
             document.body.style.backgroundColor = "grey";
@@ -138,8 +136,12 @@ button.addEventListener("click", () => {
             // element not working because it is inside the display none zone
             const defeat = document.createElement('h1')
 
-            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
+            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost..."
+            message.classList.add('msg-transition')
+            message.classList.add('fade-class')
             message.appendChild(defeat)
+
+            message.appendChild(restartButton)
         }
     })
 
@@ -147,6 +149,8 @@ button.addEventListener("click", () => {
     starCard.addEventListener("click", () => {
         playerSelection = 'paper'
         para.textContent = game();
+        
+        show()
 
         const score = document.createElement('p');
         score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
@@ -158,16 +162,26 @@ button.addEventListener("click", () => {
             document.body.style.backgroundColor = "#910c10";
             
             const victory = document.createElement('h1')
+            
             victory.innerHTML = "You have won! Balance restored."
+            message.classList.add('msg-transition')
+            message.classList.add('fade-class')
             message.appendChild(victory)
+
+            message.appendChild(restartButton)
         } else if (aiScore === 5) {
             main.style.display = "none";
             document.body.style.backgroundColor = "grey";
 
             // element not working because it is inside the display none zone
             const defeat = document.createElement('h1')
-            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
+
+            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost..."
+            message.classList.add('msg-transition')
+            message.classList.add('fade-class')
             message.appendChild(defeat)
+
+            message.appendChild(restartButton)
         }
     })
 
@@ -176,6 +190,8 @@ button.addEventListener("click", () => {
         playerSelection = 'rock'
         para.textContent = game();
 
+        show()
+
         const score = document.createElement('p');
         score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
         para.appendChild(score);
@@ -186,16 +202,26 @@ button.addEventListener("click", () => {
             document.body.style.backgroundColor = "#910c10";
             
             const victory = document.createElement('h1')
+            
             victory.innerHTML = "You have won! Balance restored."
+            message.classList.add('msg-transition')
+            message.classList.add('fade-class')
             message.appendChild(victory)
+
+            message.appendChild(restartButton)
         } else if (aiScore === 5) {
             main.style.display = "none";
             document.body.style.backgroundColor = "grey";
 
             // element not working because it is inside the display none zone
             const defeat = document.createElement('h1')
-            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost... or is it?"
+
+            defeat.innerHTML = "You have been defeated. Balance is shattered, all is lost..."
+            message.classList.add('msg-transition')
+            message.classList.add('fade-class')
             message.appendChild(defeat)
+
+            message.appendChild(restartButton)
         }
     })
 
