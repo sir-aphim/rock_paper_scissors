@@ -36,9 +36,10 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
+const computerSelection = getComputerChoice();
+
 // 2.0
 function game() {
-            const computerSelection = getComputerChoice();
             return (playRound(playerSelection, computerSelection));
              // Removed the colon ":" at the end.
         }
@@ -46,6 +47,7 @@ function game() {
 const button = document.querySelector('button');
 const body = document.querySelector('body')
 const main = document.querySelector('.content')
+const header = document.querySelector('header')
 const cards = document.querySelectorAll('.item')
 const para = document.querySelector('p')
 const message = document.querySelector('#message')
@@ -56,7 +58,7 @@ const starCard = document.querySelector("#the-star")
 const deathCard = document.querySelector("#death")
 
 // function for text transition
-function show () {
+function textTransition () {
     if (para.className) {
     para.className = ''; // checks if name is empty
     }
@@ -64,11 +66,25 @@ function show () {
     para.className = 'fade-class';
 }
 
+function clickFeedback () {
+    let click = document.querySelector('.click') // play button click noise
+    if(!click) return;
+    click.currentTime = 0;
+    click.play()
+}
+
+function startClick () {
+    let click = document.querySelector('.start')
+    click.play()
+}
+
 
 // start button event listener
 button.addEventListener("click", () => {
-    let battleTheme = document.querySelector('.battle')
+    startClick()
+    const battleTheme = document.querySelector('.battle')
     battleTheme.play()
+    battleTheme.volume = 0.07;
 
     document.body.style.backgroundColor = 'black';
     body.classList.add('bgFade');
@@ -83,7 +99,22 @@ button.addEventListener("click", () => {
     quitButton.classList.add('btn', 'btn-outline-light')
     quitButton.setAttribute('id', 'quit')
 
+    clickFeedback()
+
     main.appendChild(quitButton)
+
+    // function for button animation being pushed down by card
+    function slideButtonOnHover () {
+        deathCard.addEventListener("mouseover", () => {
+            quitButton.classList.remove('button-up')
+            quitButton.classList.add('button-down')
+        })
+    
+        deathCard.addEventListener("mouseout", () => {
+            quitButton.classList.remove('button-down')
+            quitButton.classList.add('button-up')
+        })
+    }
 
     // restart button
     const restartButton = document.createElement('button')
@@ -93,10 +124,8 @@ button.addEventListener("click", () => {
     restartButton.setAttribute('id', 'restart')
     restartButton.onclick = () => window.location.reload()
 
-
-    // function
-
-    show()
+    textTransition()
+    slideButtonOnHover()
 
     quitButton.onclick = () => window.location.reload()
 
@@ -105,22 +134,29 @@ button.addEventListener("click", () => {
         card.classList.add('active')
     })
 
+  
+  
+  const score = document.createElement('p');
+
     // devil card
     devilCard.addEventListener("click", () => {
+        clickFeedback();
+        button.remove()
         playerSelection = 'scissors';
         para.innerHTML = game();
 
-        show()
+        textTransition()
 
-        const score = document.createElement('p');
-        score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
-        para.appendChild(score);
+        score.innerHTML = `${yourScore} / ${aiScore}`
+        score.classList.add('score-style')
+        header.appendChild(score);
 
 
         if (yourScore === 5) {
             battleTheme.pause()
             const victoryTheme = document.querySelector('.victory')
             victoryTheme.play()
+            victoryTheme.volume = 0.07;
 
             main.style.display = "none";
             document.body.style.backgroundColor = "#910c10";
@@ -134,6 +170,10 @@ button.addEventListener("click", () => {
 
             message.appendChild(restartButton)
         } else if (aiScore === 5) {
+            battleTheme.pause()
+            const defeatTheme = document.querySelector('.defeat')
+            defeatTheme.play()
+            defeatTheme.volume = 0.15;
             main.style.display = "none";
             document.body.style.backgroundColor = "grey";
 
@@ -151,17 +191,24 @@ button.addEventListener("click", () => {
 
     // star card
     starCard.addEventListener("click", () => {
+        clickFeedback()
+        button.remove()
         playerSelection = 'rock'
         para.textContent = game();
         
-        show()
+        textTransition()
 
-        const score = document.createElement('p');
-        score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
-        para.appendChild(score);
+        score.innerHTML = `${yourScore} / ${aiScore}`
+        score.classList.add('score-style')
+        header.appendChild(score);
 
 
         if (yourScore === 5) {
+            battleTheme.pause()
+            const victoryTheme = document.querySelector('.victory')
+            victoryTheme.play()
+            victoryTheme.volume = 0.07;
+
             main.style.display = "none";
             document.body.style.backgroundColor = "#910c10";
             
@@ -174,6 +221,11 @@ button.addEventListener("click", () => {
 
             message.appendChild(restartButton)
         } else if (aiScore === 5) {
+            battleTheme.pause()
+            const defeatTheme = document.querySelector('.defeat')
+            defeatTheme.play()
+            defeatTheme.volume = 0.15;
+
             main.style.display = "none";
             document.body.style.backgroundColor = "grey";
 
@@ -191,17 +243,24 @@ button.addEventListener("click", () => {
 
     // death card
     deathCard.addEventListener('click', () => {
+        clickFeedback();
+        button.remove()
         playerSelection = 'paper'
         para.textContent = game();
 
-        show()
+        score.innerHTML = `${yourScore} / ${aiScore}`
+        score.classList.add('score-style')
+        header.appendChild(score);
 
-        const score = document.createElement('p');
-        score.innerHTML = `Score: (You: ${yourScore}, Enemy: ${aiScore})`
-        para.appendChild(score);
-
+        textTransition()
+   
 
         if (yourScore === 5) {
+            battleTheme.pause()
+            const victoryTheme = document.querySelector('.victory')
+            victoryTheme.play()
+            victoryTheme.volume = 0.07;
+
             main.style.display = "none";
             document.body.style.backgroundColor = "#910c10";
             
@@ -214,6 +273,11 @@ button.addEventListener("click", () => {
 
             message.appendChild(restartButton)
         } else if (aiScore === 5) {
+            battleTheme.pause()
+            const defeatTheme = document.querySelector('.defeat')
+            defeatTheme.play()
+            defeatTheme.volume = 0.15;
+
             main.style.display = "none";
             document.body.style.backgroundColor = "grey";
 
