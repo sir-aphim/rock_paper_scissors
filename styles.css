@@ -18,6 +18,13 @@ body {
     background-color: #910c10;
 }
 
+.score-style {
+    font-family: Modesto;
+    font-size: 40px;
+    transform: translateY(-20px);
+    height: 72.800px;
+}
+
 #message {
     display: flex;
     flex-direction: column;
@@ -35,6 +42,14 @@ body {
     margin: 0 auto;
     animation: fade-in 3s forwards;
 }
+
+    .button-down {
+        transition: transform .2s cubic-bezier(0.55, 0.9, 0.44, 1.2);
+        transform: translateY(15px);
+    } .button-up {
+        transition: transform .2s cubic-bezier(0.55, 0.9, 0.44, 1.2);
+        transform: translateY(0px);
+    }
 
 #restart {
     margin: 0 auto;
@@ -115,7 +130,6 @@ h1 {
             transform: scale(1.1);
             filter: drop-shadow(0.3rem 0.3rem 2rem rgb(255, 255, 255));
         }
-
 
 p {
     margin: 0 auto;
