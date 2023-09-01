@@ -84,6 +84,7 @@ button.addEventListener("click", () => {
     startClick()
     const battleTheme = document.querySelector('.battle')
     battleTheme.play()
+    battleTheme.loop = true;
     battleTheme.volume = 0.07;
 
     document.body.style.backgroundColor = 'black';
