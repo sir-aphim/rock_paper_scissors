@@ -1,7 +1,7 @@
 let yourScore = 0;
 let aiScore = 0;
 
-// randomization of options
+// randomization of computer options
 function getComputerChoice () {
     let choices = ["rock", "paper", "scissors"]
     return choices[Math.floor(Math.random()*choices.length)] ;
@@ -44,6 +44,7 @@ function game() {
              // Removed the colon ":" at the end.
         }
 
+# main document element selectors
 const button = document.querySelector('button');
 const body = document.querySelector('body')
 const main = document.querySelector('.content')
@@ -296,5 +297,3 @@ button.addEventListener("click", () => {
 
     
 }, {once: true});
-
-// highlight computer's choice when your card is chosen
