@@ -44,7 +44,7 @@ function game() {
              // Removed the colon ":" at the end.
         }
 
-# main document element selectors
+// main document element selectors
 const button = document.querySelector('button');
 const body = document.querySelector('body')
 const main = document.querySelector('.content')
